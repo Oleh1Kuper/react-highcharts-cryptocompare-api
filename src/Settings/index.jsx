@@ -4,6 +4,7 @@ import ConfirmButton from './ConfirmButton';
 import Page from '../Shared/Page';
 import { enumObj } from '../constants';
 import CoinGrid from './CoinGrid';
+import Search from './Search';
 
 const Settings = () => {
   return (
@@ -11,6 +12,7 @@ const Settings = () => {
       <Welcome />
       <CoinGrid topSection />
       <ConfirmButton />
+      <Search />
       <CoinGrid />
     </Page>
   );

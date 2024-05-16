@@ -38,10 +38,10 @@ module.exports = {
     'react-refresh/only-export-components': 'off',
     'react/jsx-no-constructed-context-values': 'off',
   },
-  'import/no-extraneous-dependencies': [
-    'error',
-    {
-      devDependencies: ['**/*.test.ts', '**/*.test.tsx'],
-    },
-  ],
+  // 'import/no-extraneous-dependencies': [
+  //   'error',
+  //   {
+  //     devDependencies: ['**/*.test.ts', '**/*.test.tsx'],
+  //   },
+  // ],
 };
