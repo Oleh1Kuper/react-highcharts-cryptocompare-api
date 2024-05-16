@@ -1,6 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import _ from 'lodash';
 import cc from 'cryptocompare';
-import { enumObj } from '../constants';
+import { enumObj, MAX_FAVORITES } from '../constants';
 
 const AppContext = createContext();
 
@@ -11,6 +17,24 @@ export const AppProvider = ({ children }) => {
   const [page, setPage] = useState(cryptoDashData?.page || enumObj.SETTINGS);
   const [isFirstVisit, setIsFirstVisit] = useState(cryptoDashData?.firstVisit ?? true);
   const [coins, setCoins] = useState(null);
+  const [favorites, setFavorites] = useState(cryptoDashData?.favorites || ['BTC', 'ETH', 'XMR', 'DOGE']);
+
+  const addCoin = (key) => {
+    const copyFavorites = [...favorites];
+
+    if (favorites.length < MAX_FAVORITES) {
+      copyFavorites.push(key);
+      setFavorites(copyFavorites);
+    }
+  };
+
+  const removeCoin = (key) => {
+    const copyFavorites = [...favorites];
+
+    setFavorites(_.pull(copyFavorites, key));
+  };
+
+  const isInFavorites = (key) => _.includes(favorites, key);
 
   const fetchCoins = async () => {
     try {
@@ -28,10 +52,10 @@ export const AppProvider = ({ children }) => {
     fetchCoins();
   }, []);
 
-  const handleClick = () => {
+  const handleConfirm = () => {
     localStorage.setItem(
       'cryptoDash',
-      JSON.stringify({ firstVisit: false, page: enumObj.DASHBOARD }),
+      JSON.stringify({ firstVisit: false, page: enumObj.DASHBOARD, favorites }),
     );
     setPage('Dashboard');
     setIsFirstVisit(false);
@@ -40,9 +64,14 @@ export const AppProvider = ({ children }) => {
   const contextValue = {
     page,
     setPage,
-    handleClick,
+    handleConfirm,
     isFirstVisit,
     coins,
+    favorites,
+    setFavorites,
+    addCoin,
+    removeCoin,
+    isInFavorites,
   };
 
   console.log(coins);

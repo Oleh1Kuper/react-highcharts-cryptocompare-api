@@ -11,10 +11,10 @@ const Grid = styled.div`
 `;
 
 const CoinGrid = ({ topSection }) => {
-  const { coins } = useAppContext();
+  const { coins, favorites } = useAppContext();
 
   const getCoinsToDispaly = (topSection) => {
-    return Object.keys(coins).slice(0, topSection ? 10 : 100);
+    return topSection ? favorites : Object.keys(coins).slice(0, 100);
   };
 
   return (

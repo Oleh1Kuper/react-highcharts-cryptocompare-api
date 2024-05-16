@@ -4,11 +4,11 @@ import { useAppContext } from '../App/AppProvider';
 import { fontSize1, greenBoxShadow, color3 } from '../Shared/Styles';
 
 const ConfirmButton = () => {
-  const { handleClick } = useAppContext();
+  const { handleConfirm } = useAppContext();
 
   return (
     <CenterDiv>
-      <Button onClick={handleClick}>Confirm Favorites</Button>
+      <Button onClick={handleConfirm}>Confirm Favorites</Button>
     </CenterDiv>
   );
 };
