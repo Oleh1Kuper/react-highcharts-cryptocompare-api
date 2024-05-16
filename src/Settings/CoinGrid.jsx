@@ -5,9 +5,16 @@ import CoinTile from './CoinTile';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   margin-top: 40px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;
 
 const CoinGrid = ({ topSection }) => {

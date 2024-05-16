@@ -7,8 +7,9 @@ const Logo = styled.div`
 `;
 
 const Bar = styled.nav`
-  display: grid;
-  grid-template-columns: 180px auto 100px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 40px;
 `;
 
@@ -18,6 +19,11 @@ const ControlButtonElem = styled.div`
     text-shadow: 0 0 40px #ecefec;
   `}
 `;
+
+const Flex = styled.div`
+  display: flex;
+  gap: 30px;
+`
 
 const ControlButton = ({ text }) => {
   const { page, setPage } = useAppContext();
@@ -39,9 +45,10 @@ const AppBar = () => {
   return (
     <Bar>
       <Logo>CryptoDash</Logo>
-      <div />
-      <ControlButton text="Dashboard" />
-      <ControlButton text="Settings" />
+      <Flex>
+        <ControlButton text="Dashboard" />
+        <ControlButton text="Settings" />
+      </Flex>
     </Bar>
   );
 };
