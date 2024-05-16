@@ -35,5 +35,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'react-refresh/only-export-components': 'off',
+    'react/jsx-no-constructed-context-values': 'off',
   },
 };
