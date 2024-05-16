@@ -9,6 +9,7 @@ const Settings = () => {
   return (
     <Page name={enumObj.SETTINGS}>
       <Welcome />
+      <CoinGrid topSection />
       <ConfirmButton />
       <CoinGrid />
     </Page>
