@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import cc from 'cryptocompare';
+import { enumObj } from '../constants';
 
 const AppContext = createContext();
 
@@ -7,16 +8,20 @@ export const useAppContext = () => useContext(AppContext);
 
 export const AppProvider = ({ children }) => {
   const cryptoDashData = JSON.parse(localStorage.getItem('cryptoDash'));
-  const [page, setPage] = useState(cryptoDashData?.page || 'Settings');
-  const [isFirstVisit, setIsFirstVisit] = useState(
-    cryptoDashData?.firstVisit ?? true,
-  );
+  const [page, setPage] = useState(cryptoDashData?.page || enumObj.SETTINGS);
+  const [isFirstVisit, setIsFirstVisit] = useState(cryptoDashData?.firstVisit ?? true);
+  const [coins, setCoins] = useState(null);
 
   const fetchCoins = async () => {
-    cc.setApiKey(import.meta.env.VITE_CC_API_KEY);
-    const coinList = await cc.coinList();
+    try {
+      cc.setApiKey(import.meta.env.VITE_CC_API_KEY);
 
-    console.log(coinList);
+      const coinList = await cc.coinList();
+
+      setCoins(coinList.Data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -26,7 +31,7 @@ export const AppProvider = ({ children }) => {
   const handleClick = () => {
     localStorage.setItem(
       'cryptoDash',
-      JSON.stringify({ firstVisit: false, page: 'Dashboard' }),
+      JSON.stringify({ firstVisit: false, page: enumObj.DASHBOARD }),
     );
     setPage('Dashboard');
     setIsFirstVisit(false);
@@ -37,7 +42,10 @@ export const AppProvider = ({ children }) => {
     setPage,
     handleClick,
     isFirstVisit,
+    coins,
   };
+
+  console.log(coins);
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

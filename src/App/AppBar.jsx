@@ -28,7 +28,7 @@ const ControlButton = ({ text }) => {
   return (
     <ControlButtonElem
       onClick={handleClick}
-      active={page === text}
+      active={+(page === text)}
     >
       {text}
     </ControlButtonElem>

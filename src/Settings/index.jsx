@@ -1,13 +1,17 @@
 import React from 'react';
 import Welcome from './Welcome';
 import ConfirmButton from './ConfirmButton';
+import Page from '../Shared/Page';
+import { enumObj } from '../constants';
+import CoinGrid from './CoinGrid';
 
 const Settings = () => {
   return (
-    <div>
+    <Page name={enumObj.SETTINGS}>
       <Welcome />
       <ConfirmButton />
-    </div>
+      <CoinGrid />
+    </Page>
   );
 };
 
