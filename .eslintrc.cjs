@@ -37,11 +37,7 @@ module.exports = {
     ],
     'react-refresh/only-export-components': 'off',
     'react/jsx-no-constructed-context-values': 'off',
+    'no-await-in-loop': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
-  // 'import/no-extraneous-dependencies': [
-  //   'error',
-  //   {
-  //     devDependencies: ['**/*.test.ts', '**/*.test.tsx'],
-  //   },
-  // ],
 };

@@ -4,6 +4,7 @@ import AppBar from './AppBar';
 import { AppProvider } from './AppProvider';
 import Settings from '../Settings';
 import Content from '../Shared/Content';
+import Dashboard from '../Dashboard';
 import './App.css';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
 
         <Content>
           <Settings />
+          <Dashboard />
         </Content>
       </AppProvider>
     </AppLayout>

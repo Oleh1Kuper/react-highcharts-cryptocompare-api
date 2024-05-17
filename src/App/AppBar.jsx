@@ -2,6 +2,31 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useAppContext } from './AppProvider';
 
+const ControlButton = ({ text }) => {
+  const { page, setPage } = useAppContext();
+  const handleClick = () => {
+    setPage(text);
+  };
+
+  return (
+    <ControlButtonElem onClick={handleClick} active={+(page === text)}>
+      {text}
+    </ControlButtonElem>
+  );
+};
+
+const AppBar = () => {
+  return (
+    <Bar>
+      <Logo>CryptoDash</Logo>
+      <Flex>
+        <ControlButton text="Dashboard" />
+        <ControlButton text="Settings" />
+      </Flex>
+    </Bar>
+  );
+};
+
 const Logo = styled.div`
   font-size: 1.5rem;
 `;
@@ -23,34 +48,6 @@ const ControlButtonElem = styled.div`
 const Flex = styled.div`
   display: flex;
   gap: 30px;
-`
-
-const ControlButton = ({ text }) => {
-  const { page, setPage } = useAppContext();
-  const handleClick = () => {
-    setPage(text);
-  };
-
-  return (
-    <ControlButtonElem
-      onClick={handleClick}
-      active={+(page === text)}
-    >
-      {text}
-    </ControlButtonElem>
-  );
-};
-
-const AppBar = () => {
-  return (
-    <Bar>
-      <Logo>CryptoDash</Logo>
-      <Flex>
-        <ControlButton text="Dashboard" />
-        <ControlButton text="Settings" />
-      </Flex>
-    </Bar>
-  );
-};
+`;
 
 export default AppBar;
